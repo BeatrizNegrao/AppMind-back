@@ -1,21 +1,15 @@
 import "reflect-metadata";
-import express from 'express';
-import cors from 'cors';
-import { AppDataSource } from './database/data-source'
-import routers from './app/routes/routes'
+import { AppDataSource } from './database/data-source';
+import api from './config/api';
+import routers from './app/routes/routes';
 
-const app = express();
+const PORT = 3333;
 
-app.use(cors());
+api.use(routers);
 
-app.use(express.json());
-
-app.use(routers);
-
-AppDataSource.initialize().then(async () =>{
+AppDataSource.initialize().then(async () => {
     console.log('Database OK');
-    app.listen(3333, () => {
-        console.log('Server started on port 3333');
-    })
-})
-
+    api.listen(PORT, () => {
+        console.log(`Server started on port ${PORT}`);
+    });
+}).catch(error => console.log(error));

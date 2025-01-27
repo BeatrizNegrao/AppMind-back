@@ -1,8 +1,7 @@
-// src\app\entities\Product.ts
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('produtos') // Nome da tabela no banco permanece em minúsculas
-class produtos {
+@Entity('produtos')
+class Produtos {
     @PrimaryGeneratedColumn('increment')
     id_produto: number;
 
@@ -17,6 +16,6 @@ class produtos {
 
     @Column({ type: 'int', nullable: false })
     quantidade_atual: number;
-}
 
-export default produtos;
+}
+export default Produtos;

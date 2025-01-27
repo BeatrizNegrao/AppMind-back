@@ -12,8 +12,8 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "pedro100224",
     database: "mind_app",
-    synchronize: false, // Alterado para false, pois agora você está usando migrations
-    logging: true, // Ativado para visualizar logs durante as operações
+    synchronize: false, 
+    logging: true,
     entities: [User, Product], // Adicionado a entidade Product
     migrations: [
         CreatureUsersTable1737924315983,

@@ -18,4 +18,8 @@ const updateUser = async (id: number, user: IUser): Promise<IUser | null> => {
 };
 const deleteUser = (id: number): Promise<void> => userRepository.delete(id).then(() => {});
 
-export default { getUsers, createUser, updateUser, deleteUser };
+
+const findByEmail = (email: string): Promise<IUser | null> => 
+    userRepository.findOneBy({ email });
+
+export default { getUsers, createUser, updateUser, deleteUser, findByEmail };
