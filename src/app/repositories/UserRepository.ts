@@ -1,11 +1,21 @@
-import User from '../entities/User'
-import IUser from '../interfaces/IUser'
-import { AppDataSource } from '../../database/data-source'
+import User from '../entities/User';
+import IUser from '../interfaces/IUser';
+import { AppDataSource } from '../../database/data-source';
 
-const loginRepository = AppDataSource.getRepository(User); //Indica a criação de um repositório que tem como base da entidade usuarios
+const userRepository = AppDataSource.getRepository(User);
 
-const getUsers = (): Promise<IUser[]> => { // retorna um array de dados da table de usuarios
-    return loginRepository.find();  // find() - método para fazer select * from na table usuarios
-}
+const getUsers = (): Promise<IUser[]> => userRepository.find();
 
-export default {getUsers};
+const createUser = (user: IUser): Promise<IUser> => userRepository.save(user);
+
+const updateUser = async (id: number, user: IUser): Promise<IUser | null> => {
+    await userRepository.update(id, user);
+    const updatedUser = await userRepository.findOneBy({ id_usuarios: id });
+    if (!updatedUser) {
+        return null; // Caso não encontre o usuário, retorne null.
+    }
+    return updatedUser;
+};
+const deleteUser = (id: number): Promise<void> => userRepository.delete(id).then(() => {});
+
+export default { getUsers, createUser, updateUser, deleteUser };

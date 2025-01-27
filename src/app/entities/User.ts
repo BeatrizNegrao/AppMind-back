@@ -18,19 +18,3 @@ class usuarios {
 
 export default usuarios;
 
-// @Entity('usuarios')
-// class User {
-//     @PrimaryGeneratedColumn('increment')
-//     id_usuarios: number;
-
-//     @Column('varchar', { length: 100, nullable: false })
-//     name: string;
-
-//     @Column('varchar', { length: 100, nullable: false })
-//     email: string;
-
-//     @Column('varchar', { length: 200, nullable: false })
-//     senha: string;
-// }
-
-// export default User;
